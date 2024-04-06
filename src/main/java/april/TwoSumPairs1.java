@@ -3,7 +3,7 @@ package april;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TwoSumPairs {
+public class TwoSumPairs1 {
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(3, 1, 2, 4, 5, 6, 7, 8, 9, -1);
         int targetSum = 8; //output [[1, 7], [2, 6], [3, 5], [9, -1]]
