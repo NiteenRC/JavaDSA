@@ -32,12 +32,11 @@ public class TwoSumPairs2 {
         List<List<Integer>> result = new ArrayList<>();
 
         for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
-            int diff = target - num;
-            if (map.containsKey(diff)) {
-                result.add(Arrays.asList(map.get(diff), i));
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                result.add(Arrays.asList(map.get(complement), i));
             }
-            map.put(num, i);
+            map.put(nums[i], i);
         }
         return result;
     }

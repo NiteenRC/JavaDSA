@@ -39,12 +39,11 @@ public class TwoSumPairs3 {
 
         return IntStream.range(0, nums.length)
                 .filter(i -> {
-                    int num = nums[i];
-                    int difference = target - num;
-                    if (numIndexMap.containsKey(difference)) {
+                    int complement = target - nums[i];
+                    if (numIndexMap.containsKey(complement)) {
                         return true;
                     }
-                    numIndexMap.putIfAbsent(num, i);
+                    numIndexMap.putIfAbsent(nums[i], i);
                     return false;
                 })
                 .mapToObj(i -> Arrays.asList(numIndexMap.get(target - nums[i]), i))

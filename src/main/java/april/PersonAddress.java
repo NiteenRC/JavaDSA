@@ -70,8 +70,8 @@ public class PersonAddress {
                 //.sorted((p1, p2) -> p2.getName().compareTo(p1.getName())) // Sort by name in descending order
                 .sorted(Comparator.comparing(Person::getName).reversed()) // Sort by name in descending order
                 .filter(person -> person.getAddresses().stream().anyMatch(address -> address.getCity().equals("New York")) || person.getName().equals("John")) // Filter persons living in New York or named John
-                .map(person -> person.getName().toUpperCase()) // Map names to uppercase
                 .limit(3) // Limit to 3 elements
+                .map(person -> person.getName().toUpperCase()) // Map names to uppercase
                 .collect(Collectors.toList()); // Collect results into a list
 
         System.out.println(result);

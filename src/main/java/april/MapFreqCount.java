@@ -2,11 +2,11 @@ package april;
 
 public class MapFreqCount {
     public static void main(String[] args) {
-        String charCount = calculateCharacterFrequency("aabbccccc");
+        String charCount = java7("aabbcccccaaaa");
         System.out.println(charCount);
     }
 
-    private static String calculateCharacterFrequency(String str) {
+    private static String java7(String str) {
         char currentChar = str.charAt(0);
         int count = 0;
         StringBuilder resultBuilder = new StringBuilder();
