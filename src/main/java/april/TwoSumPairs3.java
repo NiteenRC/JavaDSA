@@ -4,12 +4,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * If duplicate record then only add the first character index
+ * input = [2, 2, 7, 11, 15]
+ * output = [0, 2]
+ */
 public class TwoSumPairs3 {
     public static void main(String[] args) {
-        /**
-         *  If duplicate record then only add the first character index
-         *  input = [2, 2, 7, 11, 15] output = [0, 2]
-         */
         int[] nums = {2, 2, 7, 11, 15, -6, 3, 6, 8};
         int target = 9;
         List<List<Integer>> pairs = java8(nums, target);

@@ -1,13 +1,13 @@
 package polimorphism;
 
+/**
+ * Which method will be invoked
+ * <p>
+ * Ans: Ambiguous method call in main method only
+ */
 public class OverLoading2 {
     public static void main(String[] args) {
-        /**
-         * Which method will be invoked
-         */
         //new OverLoading2().callWithNull(null);
-
-        //Ans: Ambiguous method call in main method only
     }
 
     private void callWithNull(String str) {

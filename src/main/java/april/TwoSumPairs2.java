@@ -4,9 +4,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Find the two sum equals to target given and output should be index of sum
+ * target = 9
+ * output = [[0,1], [4,6]]
+ */
 public class TwoSumPairs2 {
     public static void main(String[] args) {
-        int[] nums = {2, 7, 11, 15, 3, 6, 8};
+        int[] nums = {2, 7, 11, 15, 3, 8, 6};
         int target = 9;
         List<List<Integer>> pairs = java8(nums, target);
         pairs.forEach(System.out::println);
