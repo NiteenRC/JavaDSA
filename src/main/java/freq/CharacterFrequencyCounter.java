@@ -1,12 +1,12 @@
-package april;
+package freq;
 
-public class MapFreqCount {
+public class CharacterFrequencyCounter {
     public static void main(String[] args) {
-        String charCount = java7("aabbcccccaaaa");
+        String charCount = countCharacterFrequency("aabbcccccaaaa");
         System.out.println(charCount);
     }
 
-    private static String java7(String str) {
+    private static String countCharacterFrequency(String str) {
         char currentChar = str.charAt(0);
         int count = 0;
         StringBuilder resultBuilder = new StringBuilder();
