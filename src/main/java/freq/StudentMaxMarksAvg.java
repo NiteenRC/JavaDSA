@@ -25,8 +25,7 @@ public class StudentMaxMarksAvg {
                 new Student("Bob", 80),
                 new Student("Dane", 2),
                 new Student("Dane", 3),
-                new Student("Alice", 10)
-        );
+                new Student("Alice", 10));
 
         double maxAverage = calculateMaxAverageUsingJava7(students);
         System.out.println(maxAverage);
