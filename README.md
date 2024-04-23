@@ -47,4 +47,5 @@ This repository contains solutions to various Java programming tasks.
     [Solution](https://leetcode.com/problems/valid-parentheses/submissions/1175786382/)
 
 12. **Sort Users by firstName and then by lastName, and Group by gender**: program sorts a list of users by their firstName and then by lastName, and then groups them by gender.
+
     [solution](https://github.com/NiteenRC/JavaDSA/blob/master/src/main/java/sort/SortAndGroupByGender.java)
