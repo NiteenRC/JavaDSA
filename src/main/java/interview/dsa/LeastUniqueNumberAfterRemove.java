@@ -1,4 +1,4 @@
-package current;
+package interview.dsa;
 
 /**
  * Find the least possible count of unique numbers after removing k elements.

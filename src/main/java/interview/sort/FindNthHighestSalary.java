@@ -1,4 +1,4 @@
-package current;
+package interview.sort;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,14 +12,15 @@ import java.util.stream.Collectors;
 public class FindNthHighestSalary {
     public static void main(String[] args) {
         List<Employee> employees = Arrays.asList(
-                new Employee("A", 100),
-                new Employee("B", 600),
-                new Employee("C", 300),
-                new Employee("D", 700),
-                new Employee("E", 800)
+                new Employee("Harish", 100),
+                new Employee("Ajay", 600),
+                new Employee("Kiran", 300),
+                new Employee("Tarun", 700),
+                new Employee("Evan", 800)
         );
 
-        System.out.println(findNthHighestSalary(employees, 100));
+        Employee employee = findNthHighestSalary(employees, 2);
+        System.out.println(employee.getFirstName() + " " + employee.getSalary());
     }
 
     private static Employee findNthHighestSalary(List<Employee> employees, int num) {
@@ -30,39 +31,5 @@ public class FindNthHighestSalary {
         Optional<Employee> employee = sorted.stream().skip(num - 1).findFirst();
 
         return employee.orElseThrow(() -> new RuntimeException("Not Found"));
-    }
-}
-
-class Employee {
-    private String name;
-    private int salary;
-
-    public Employee(String name, int salary) {
-        this.name = name;
-        this.salary = salary;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", salary=" + salary +
-                '}';
     }
 }

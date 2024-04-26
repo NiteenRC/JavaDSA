@@ -3,6 +3,11 @@ package interview.sliding;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * int [] arr = {1,2,3,4,6}
+ * int k = 3 then sub arrays will be {1,2,3}, {2,3,4},{3,4,6}
+ * here 3 occurred most of the time in all the windows, so answer = 3
+ */
 public class MostFrequentElementInSubarrays {
     public static int mostFrequentElement(int[] arr, int k) {
         Map<Integer, Integer> freqMap = new HashMap<>();

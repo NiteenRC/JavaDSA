@@ -36,36 +36,7 @@ public class EmployeeSortingGrouping {
         System.out.println("\nGrouped by gender:");
         groupedByGender.forEach((gender, employeeList) -> {
             System.out.println(gender + ":");
-            employeeList.forEach(System.out::println);
+            employeeList.forEach(e -> System.out.println(e.getFirstName() + " - " + e.getGender()));
         });
-    }
-}
-
-class Employee {
-    private final String firstName;
-    private final String lastName;
-    private final String gender;
-
-    public Employee(String firstName, String lastName, String gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    @Override
-    public String toString() {
-        return firstName + " " + lastName + " (" + gender + ")";
     }
 }

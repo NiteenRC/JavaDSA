@@ -1,4 +1,4 @@
-package current;
+package interview.dsa;
 
 /**
  * Search in Rotated Sorted Array
