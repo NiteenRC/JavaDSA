@@ -1,10 +1,10 @@
 package interview.sort;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StudentMarksSorter {
     public static void main(String[] args) {
@@ -19,14 +19,35 @@ public class StudentMarksSorter {
                 new Student("Gita", "Physics", 55),
                 new Student("Gita", "English", 65));
 
+
+        int maxAvg = calculateMaxAverage(students);
+        System.out.println("Max AVG: " + maxAvg);
+
+        List<Map.Entry<String, Integer>> entryList = sumAndSortByDesc(students);
+        entryList.forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
+    }
+
+    private static List<Map.Entry<String, Integer>> sumAndSortByDesc(List<Student> students) {
         Map<String, Integer> studentTotalMarks = students.stream()
-                .collect(Collectors.groupingBy(Student::getName, Collectors.summingInt(Student::getMarks)));
+                .collect(Collectors.groupingBy(Student::getName,
+                        Collectors.summingInt(Student::getMarks)));
 
-        List<Map.Entry<String, Integer>> sortedStudents = new ArrayList<>(studentTotalMarks.entrySet());
+        Stream<Map.Entry<String, Integer>> sortedStudents = studentTotalMarks.entrySet().stream()
+                .sorted((entry1, entry2) ->
+                        entry2.getValue() - entry1.getValue()); // Sort in descending order
 
-        sortedStudents.sort((entry1, entry2) -> entry2.getValue() - entry1.getValue()); // Sort in descending order
+        return sortedStudents.collect(Collectors.toList());
+    }
 
-        sortedStudents.forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
+    private static int calculateMaxAverage(List<Student> students) {
+        Map<String, Double> averageMap = students.stream()
+                .collect(Collectors.groupingBy(Student::getName,
+                        Collectors.averagingInt(Student::getMarks)));
+
+        return averageMap.values().stream()
+                .mapToInt(Double::intValue)
+                .max()
+                .orElse(Integer.MIN_VALUE);
     }
 }
 
