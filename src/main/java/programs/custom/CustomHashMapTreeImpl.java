@@ -3,6 +3,7 @@ package programs.custom;
 class CustomHashMapTree<K extends Comparable<K>, V> {
     private static final int DEFAULT_CAPACITY = 16;
     private static final double DEFAULT_LOAD_FACTOR = 0.75;
+
     private final double loadFactorThreshold;
     private Node<K, V>[] buckets;
     private int size = 0;
