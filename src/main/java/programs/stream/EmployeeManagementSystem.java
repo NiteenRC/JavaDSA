@@ -1,9 +1,6 @@
 package programs.stream;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EmployeeManagementSystem {
@@ -20,7 +17,7 @@ public class EmployeeManagementSystem {
             new Employee(200, "Jaden Dough", 38, "Male", "Security And Transport", 2015, 11000.5),
             new Employee(211, "Jasna Kaur", 27, "Female", "Infrastructure", 2014, 15700.0),
             new Employee(222, "Nitin Joshi", 25, "Male", "Product Development", 2016, 28200.0),
-            new Employee(233, "Jyothi Reddy", 27, "Female", "Account And Finance", 2013, 21300.0),
+            new Employee(233, "Jyothi Reddy", 27, "Female", "Account And Finance", 2013, 22700.0),
             new Employee(244, "Nicolus Den", 24, "Male", "Sales And Marketing", 2017, 10700.5),
             new Employee(255, "Ali Baig", 23, "Male", "Infrastructure", 2018, 12700.0),
             new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0),
@@ -42,6 +39,7 @@ public class EmployeeManagementSystem {
         printOrganizationSalaryStats();
         separateEmployeesByAge(25);
         printOldestEmployeeDetails();
+        printMaxSalaryOfEmployeesForEachAgeGroup();
     }
 
     private static void countMaleAndFemaleEmployees() {
@@ -140,6 +138,32 @@ public class EmployeeManagementSystem {
         employeeList.stream()
                 .max(Comparator.comparingInt(Employee::getAge))
                 .ifPresent(employee -> System.out.println("Oldest Employee: " + employee + ", Department: " + employee.getDepartment()));
+    }
+
+    private static void printMaxSalaryOfEmployeesForEachAgeGroup() {
+        // Group employees by age, then find the maximum salary for each age group and filter employees accordingly
+        Map<Integer, List<Employee>> maxSalaryOfEmployees = employeeList.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getAge, // Group by age
+                        Collectors.collectingAndThen(
+                                Collectors.toList(), // Collect into a list first
+                                employees -> {
+                                    // Find the maximum salary in the list
+                                    double maxSalary = employees.stream()
+                                            .mapToDouble(Employee::getSalary)
+                                            .max()
+                                            .orElse(0.0);
+
+                                    // Filter employees who have the maximum salary
+                                    return employees.stream()
+                                            .filter(emp -> emp.getSalary() == maxSalary)
+                                            .collect(Collectors.toList());
+                                }
+                        )
+                ));
+        maxSalaryOfEmployees.forEach((age, employees) -> {
+            System.out.println(age + ": " + employees);
+        });
     }
 }
 
