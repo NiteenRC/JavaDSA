@@ -40,6 +40,7 @@ public class EmployeeManagementSystem {
         separateEmployeesByAge(25);
         printOldestEmployeeDetails();
         printMaxSalaryOfEmployeesForEachAgeGroup();
+        printDepartmentGenderSalaryStats();
     }
 
     private static void countMaleAndFemaleEmployees() {
@@ -163,6 +164,37 @@ public class EmployeeManagementSystem {
                 ));
         maxSalaryOfEmployees.forEach((age, employees) -> {
             System.out.println(age + ": " + employees);
+        });
+    }
+
+    private static void printDepartmentGenderSalaryStats() {
+        // Group employees by department and gender
+        Map<String, Map<String, List<Employee>>> employeesByDeptAndGender = employeeList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.groupingBy(Employee::getGender)));
+
+        // Iterate over each department and gender group
+        employeesByDeptAndGender.forEach((department, genderMap) -> {
+            genderMap.forEach((gender, employees) -> {
+                // Calculate the average salary for the current group
+                double avgSalary = employees.stream()
+                        .mapToDouble(Employee::getSalary)
+                        .average()
+                        .orElse(0.0);
+
+                // Log the average salary for the current group
+                System.out.println("Department: " + department + ", Gender: " + gender + ", Average Salary: " + avgSalary);
+
+                // Find the employee with the highest salary in the current group
+                Employee maxSalaryEmployee = employees.stream()
+                        .max(Comparator.comparingDouble(Employee::getSalary))
+                        .orElse(null);
+
+                // Log the details of the employee(s) with the highest salary
+                if (maxSalaryEmployee != null) {
+                    System.out.println("Highest Salary Employee in Department: " + department + ", Gender: " + gender + ": " + maxSalaryEmployee);
+                }
+            });
         });
     }
 }
