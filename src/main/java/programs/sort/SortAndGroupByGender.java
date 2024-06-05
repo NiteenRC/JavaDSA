@@ -45,8 +45,7 @@ public class SortAndGroupByGender {
 
         // Sort by firstName and then by lastName
         List<User> sortedUsers = users.stream()
-                .sorted(Comparator.comparing(User::getFirstName).thenComparing(User::getLastName))
-                .collect(Collectors.toList());
+                .sorted(Comparator.comparing(User::getFirstName).thenComparing(User::getLastName)).toList();
 
         // Group by gender
         Map<String, List<User>> groupedByGender = new HashMap<>();
