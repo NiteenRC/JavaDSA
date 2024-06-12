@@ -1,6 +1,6 @@
 package programs.threads;
 
-public class CreateThreads {
+public class RunnableThread {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Main thread name: " + Thread.currentThread().getName());
 

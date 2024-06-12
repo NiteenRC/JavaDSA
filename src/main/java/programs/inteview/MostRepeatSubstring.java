@@ -1,10 +1,5 @@
 package programs.inteview;
 
-/**
- * Goldman Sachs
- * <p>
- * Similar to https://leetcode.com/problems/consecutive-characters/
- */
 public class MostRepeatSubstring {
     public static void main(String[] args) {
         MostRepeatSubstring solution = new MostRepeatSubstring();
@@ -15,7 +10,7 @@ public class MostRepeatSubstring {
     }
 
     public int[] maxContiguousRepeatingChar(String s) {
-        if (s == null || s.length() == 0) {
+        if (s == null || s.isEmpty()) {
             return new int[]{-1, 0}; // Handle empty string case
         }
 
@@ -25,10 +20,12 @@ public class MostRepeatSubstring {
         int currentStartIndex = 0;
         int currentLength = 1;
 
-        for (int i = 1; i < chars.length; i++) {
+        // Iterate over the characters to find the maximum contiguous repeating substring
+        for (int i = 1; i < s.length(); i++) {
             if (chars[i] == chars[i - 1]) {
                 currentLength++;
             } else {
+                // Update maximum length and start index if the current sequence is longer
                 if (currentLength > maxLength) {
                     maxStartIndex = currentStartIndex;
                     maxLength = currentLength;

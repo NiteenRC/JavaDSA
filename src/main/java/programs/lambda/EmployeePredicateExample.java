@@ -2,13 +2,12 @@ package programs.lambda;
 
 import programs.sort.Employee;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class EmployeePredicateExample {
     public static void main(String[] args) {
-        List<Employee> employees = Arrays.asList(
+        List<Employee> employees = List.of(
                 new Employee("Alice", "Smith", "Female"),
                 new Employee("Bob", "Jones", "Male"),
                 new Employee("Charlie", "Brown", "Male"),
@@ -16,9 +15,9 @@ public class EmployeePredicateExample {
                 new Employee("Eve", 95000)
         );
 
-        Predicate<Employee> isMale = e -> "Male".equals(e.getGender());
-        Predicate<Employee> hasHighSalary = e -> e.getSalary() > 100000;
-        Predicate<Employee> nameStartsWithA = e -> e.getFirstName().startsWith("A");
+        Predicate<Employee> isMale = e -> "Male".equals(e.gender());
+        Predicate<Employee> hasHighSalary = e -> e.salary() > 100000;
+        Predicate<Employee> nameStartsWithA = e -> e.firstName().startsWith("A");
 
         // Using 'and' method
         Predicate<Employee> isMaleAndHasHighSalary = isMale.and(hasHighSalary);

@@ -1,7 +1,6 @@
 package programs.sort;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 class User {
     private final String firstName;

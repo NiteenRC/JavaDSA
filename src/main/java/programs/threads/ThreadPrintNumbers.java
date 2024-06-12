@@ -1,4 +1,4 @@
-package programs.lambda;
+package programs.threads;
 
 import java.util.stream.IntStream;
 

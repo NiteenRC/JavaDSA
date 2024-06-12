@@ -3,7 +3,6 @@ package programs.sort;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Find the nth highest salary of Employees
@@ -19,16 +18,16 @@ public class FindNthHighestSalary {
                 new Employee("Evan", 800)
         );
 
-        Employee employee = findNthHighestSalary(employees, 2);
-        System.out.println(employee.getFirstName() + " " + employee.getSalary());
+        Employee employee = findNthHighestSalary(employees);
+        System.out.println(employee.firstName() + " " + employee.salary());
     }
 
-    private static Employee findNthHighestSalary(List<Employee> employees, int num) {
+    private static Employee findNthHighestSalary(List<Employee> employees) {
         List<Employee> sorted = employees.stream()
-                .sorted((e1, e2) -> e2.getSalary() - e1.getSalary())
-                .collect(Collectors.toList());
+                .sorted((e1, e2) -> e2.salary() - e1.salary())
+                .toList();
 
-        Optional<Employee> employee = sorted.stream().skip(num - 1).findFirst();
+        Optional<Employee> employee = sorted.stream().skip(2 - 1).findFirst();
 
         return employee.orElseThrow(() -> new RuntimeException("Not Found"));
     }

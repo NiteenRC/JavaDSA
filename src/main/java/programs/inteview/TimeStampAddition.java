@@ -23,9 +23,9 @@ public class TimeStampAddition {
 
             seconds = seconds % SECONDS_IN_MINUTE;
             minutes = minutes % MINUTES_IN_HOUR;
-            hours = hours % HOURS_IN_DAY;
+            hours = hours % HOURS_IN_DAY; // Correcting hours calculation
         } catch (NumberFormatException e) {
-            return "Timestamp is Invalid";
+            return "Invalid timestamp format";
         }
 
         return formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
