@@ -1,5 +1,6 @@
 package programs.versions;
 
+/*import java.awt.*;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.random.RandomGenerator;
@@ -14,7 +15,7 @@ public class Java17Features {
         // 2. Pattern Matching for switch
         System.out.println("\n=== Pattern Matching for switch ===");
         Number num = 42;
-        System.out.println("Number type: " + getType(num));
+        //System.out.println("Number type: " + getType(num));
 
         // 3. Enhanced Random Number Generators
         System.out.println("\n=== Enhanced Random Number Generators ===");
@@ -102,4 +103,4 @@ public class Java17Features {
             return "I am a Square";
         }
     }
-}
+}*/

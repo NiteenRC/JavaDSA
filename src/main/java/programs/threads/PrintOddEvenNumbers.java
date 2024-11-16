@@ -1,13 +1,16 @@
 package programs.threads;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class PrintOddEvenNumbers {
     private static final int MAX_NUMBER = 20;
-    private static final Object lock = new Object();
-    private static volatile int number = 1;
+    private static final Lock lock = new ReentrantLock();
+    private static int number = 1;
 
     public static void main(String[] args) {
-        Thread oddThread = new Thread(PrintOddEvenNumbers::printOdd);
-        Thread evenThread = new Thread(PrintOddEvenNumbers::printEven);
+        Thread oddThread = new Thread(PrintOddEvenNumbers::printOdd, "T1");
+        Thread evenThread = new Thread(PrintOddEvenNumbers::printEven,"T2");
 
         oddThread.start();
         evenThread.start();

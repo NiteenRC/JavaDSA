@@ -175,19 +175,17 @@ public class EmployeeManagementSystem {
                 .collect(Collectors.groupingBy(Employee::department,
                         Collectors.groupingBy(Employee::gender)));
 
-        employeesByDeptAndGender.forEach((department, genderMap) -> {
-            genderMap.forEach((gender, employees) -> {
-                var avgSalary = employees.stream()
-                        .mapToDouble(Employee::salary)
-                        .average()
-                        .orElse(0.0);
-                System.out.println("Department: " + department + ", Gender: " + gender + ", Average Salary: " + avgSalary);
+        employeesByDeptAndGender.forEach((department, genderMap) -> genderMap.forEach((gender, employees) -> {
+            var avgSalary = employees.stream()
+                    .mapToDouble(Employee::salary)
+                    .average()
+                    .orElse(0.0);
+            System.out.println("Department: " + department + ", Gender: " + gender + ", Average Salary: " + avgSalary);
 
-                employees.stream()
-                        .max(Comparator.comparingDouble(Employee::salary))
-                        .ifPresent(maxSalaryEmployee -> System.out.println("Highest Salary Employee in Department: " + department + ", Gender: " + gender + ": " + maxSalaryEmployee));
-            });
-        });
+            employees.stream()
+                    .max(Comparator.comparingDouble(Employee::salary))
+                    .ifPresent(maxSalaryEmployee -> System.out.println("Highest Salary Employee in Department: " + department + ", Gender: " + gender + ": " + maxSalaryEmployee));
+        }));
     }
 }
 
