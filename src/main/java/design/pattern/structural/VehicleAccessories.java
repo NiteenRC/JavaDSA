@@ -8,10 +8,10 @@ interface Vehicle {
 }
 
 // ConcreteComponent
-class Car implements Vehicle {
+class Truck implements Vehicle {
     @Override
     public String getDescription() {
-        return "Car";
+        return "Truck";
     }
 
     @Override
@@ -110,25 +110,25 @@ class CustomColor extends VehicleDecorator {
 // Client
 public class VehicleAccessories {
     public static void main(String[] args) {
-        // Base Car
-        Vehicle car = new Car();
-        System.out.println("Base Car: " + car.getDescription() + ", Cost: $" + car.cost());
+        // Base Truck
+        Vehicle Truck = new Truck();
+        System.out.println("Base Truck: " + Truck.getDescription() + ", Cost: $" + Truck.cost());
 
-        // Adding Alloy Wheels to Car
-        Vehicle carWithAlloyWheels = new AlloyWheels(car);
-        System.out.println("Car with Alloy Wheels: " + carWithAlloyWheels.getDescription() + ", Cost: $" + carWithAlloyWheels.cost());
+        // Adding Alloy Wheels to Truck
+        Vehicle TruckWithAlloyWheels = new AlloyWheels(Truck);
+        System.out.println("Truck with Alloy Wheels: " + TruckWithAlloyWheels.getDescription() + ", Cost: $" + TruckWithAlloyWheels.cost());
 
-        // Adding GPS Navigation to Car with Alloy Wheels
-        Vehicle carWithAlloyWheelsAndGPS = new GPSNavigation(carWithAlloyWheels);
-        System.out.println("Car with Alloy Wheels and GPS Navigation: " + carWithAlloyWheelsAndGPS.getDescription() + ", Cost: $" + carWithAlloyWheelsAndGPS.cost());
+        // Adding GPS Navigation to Truck with Alloy Wheels
+        Vehicle TruckWithAlloyWheelsAndGPS = new GPSNavigation(TruckWithAlloyWheels);
+        System.out.println("Truck with Alloy Wheels and GPS Navigation: " + TruckWithAlloyWheelsAndGPS.getDescription() + ", Cost: $" + TruckWithAlloyWheelsAndGPS.cost());
 
-        // Adding Enhanced Breaking System to Car with Alloy Wheels and GPS Navigation
-        Vehicle carWithAlloyWheelsGPSAndBreaking = new EnhancedBreakingSystem(carWithAlloyWheelsAndGPS);
-        System.out.println("Car with Alloy Wheels, GPS Navigation, and Enhanced Breaking System: " + carWithAlloyWheelsGPSAndBreaking.getDescription() + ", Cost: $" + carWithAlloyWheelsGPSAndBreaking.cost());
+        // Adding Enhanced Breaking System to Truck with Alloy Wheels and GPS Navigation
+        Vehicle TruckWithAlloyWheelsGPSAndBreaking = new EnhancedBreakingSystem(TruckWithAlloyWheelsAndGPS);
+        System.out.println("Truck with Alloy Wheels, GPS Navigation, and Enhanced Breaking System: " + TruckWithAlloyWheelsGPSAndBreaking.getDescription() + ", Cost: $" + TruckWithAlloyWheelsGPSAndBreaking.cost());
 
-        // Adding Custom Color to Car with Alloy Wheels, GPS Navigation, and Enhanced Breaking System
-        Vehicle carWithAlloyWheelsGPSBreakingAndCustomColor = new CustomColor(carWithAlloyWheelsGPSAndBreaking, "Red");
-        System.out.println("Car with Alloy Wheels, GPS Navigation, Enhanced Breaking System, and Custom Color: " + carWithAlloyWheelsGPSBreakingAndCustomColor.getDescription() + ", Cost: $" + carWithAlloyWheelsGPSBreakingAndCustomColor.cost());
+        // Adding Custom Color to Truck with Alloy Wheels, GPS Navigation, and Enhanced Breaking System
+        Vehicle TruckWithAlloyWheelsGPSBreakingAndCustomColor = new CustomColor(TruckWithAlloyWheelsGPSAndBreaking, "Red");
+        System.out.println("Truck with Alloy Wheels, GPS Navigation, Enhanced Breaking System, and Custom Color: " + TruckWithAlloyWheelsGPSBreakingAndCustomColor.getDescription() + ", Cost: $" + TruckWithAlloyWheelsGPSBreakingAndCustomColor.cost());
     }
 }
 

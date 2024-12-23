@@ -1,56 +1,60 @@
 package design.pattern.structural;
 
-// Vehicle2 interface
-interface Vehicle2 {
-    void start();
-
-    void stop();
-}
-
-// RealSubject
-class Car2 implements Vehicle2 {
+class RealCar implements Car {
     @Override
-    public void start() {
-        System.out.println("Car2 started");
+    public void drive() {
+        System.out.println("Driving the real car...");
     }
 
     @Override
-    public void stop() {
-        System.out.println("Car2 stopped");
+    public void honk() {
+        System.out.println("Honking the real car horn...");
     }
 }
 
-// Proxy
-class Vehicle2Proxy implements Vehicle2 {
-    private Car2 Car2;
+class CarProxy implements Car {
+    private final RealCar realCar;
+    private final String authorizedDriver;
 
-    @Override
-    public void start() {
-        lazyInit();
-        Car2.start();
+    public CarProxy(RealCar realCar, String authorizedDriver) {
+        this.realCar = realCar;
+        this.authorizedDriver = authorizedDriver;
     }
 
     @Override
-    public void stop() {
-        lazyInit();
-        Car2.stop();
-    }
-
-    private void lazyInit() {
-        if (Car2 == null) {
-            System.out.println("Creating Car2 object...");
-            Car2 = new Car2();
+    public void drive() {
+        if (isAuthorized()) {
+            System.out.println("Access granted to drive the car.");
+            realCar.drive();
+        } else {
+            System.out.println("Access denied! Unauthorized driver.");
         }
     }
+
+    @Override
+    public void honk() {
+        System.out.println("Logging: Honk triggered by a driver.");
+        realCar.honk();
+    }
+
+    private boolean isAuthorized() {
+        return "authorized_user".equalsIgnoreCase(authorizedDriver);
+    }
 }
 
-// Client
 public class VehicleProxyImpl {
     public static void main(String[] args) {
-        Vehicle2 Vehicle2 = new Vehicle2Proxy();
+        RealCar realCar = new RealCar();
 
-        // Perform operations
-        Vehicle2.start();
-        Vehicle2.stop();
+        Car authorizedProxy = new CarProxy(realCar, "authorized_user");
+        Car unauthorizedProxy = new CarProxy(realCar, "unauthorized_user");
+
+        System.out.println("=== Authorized Proxy ===");
+        authorizedProxy.drive();
+        authorizedProxy.honk();
+
+        System.out.println("\n=== Unauthorized Proxy ===");
+        unauthorizedProxy.drive();
+        unauthorizedProxy.honk();
     }
 }

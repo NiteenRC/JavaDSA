@@ -1,53 +1,43 @@
 package design.pattern.structural;
 
-// Vehicle1 interface
-interface Vehicle1 {
-    String getDescription();
-
-    double cost();
-
+interface Car {
     void drive();
+
+    void honk();
 }
 
-// Existing class representing a basic Vehicle1 format
-class BasicVehicle1 {
-    public void driveForward() {
-        System.out.println("Basic Vehicle1 is driving forward.");
+class Bicycle {
+    public void pedal() {
+        System.out.println("Pedaling the bicycle...");
+    }
+
+    public void ringBell() {
+        System.out.println("Ringing the bicycle bell...");
     }
 }
 
-// Adapter to make BasicVehicle1 compatible with Vehicle1 interface
-class BasicVehicle1Adapter implements Vehicle1 {
-    private final BasicVehicle1 basicVehicle1;
+class BicycleAdapter implements Car {
+    private final Bicycle bicycle;
 
-    public BasicVehicle1Adapter(BasicVehicle1 basicVehicle1) {
-        this.basicVehicle1 = basicVehicle1;
+    public BicycleAdapter(Bicycle bicycle) {
+        this.bicycle = bicycle;
     }
 
-    @Override
-    public String getDescription() {
-        return "Basic Vehicle1";
-    }
-
-    @Override
-    public double cost() {
-        return 15000.00;
-    }
-
-    // Forward drive functionality to BasicVehicle1's driveForward method
     @Override
     public void drive() {
-        basicVehicle1.driveForward();
+        bicycle.pedal(); // Adapting 'pedal' to 'drive'
+    }
+
+    @Override
+    public void honk() {
+        bicycle.ringBell(); // Adapting 'ringBell' to 'honk'
     }
 }
 
-// Client
 public class VehicleAdapter {
     public static void main(String[] args) {
-        // Using BasicVehicle1 with Vehicle1 interface through Adapter
-        BasicVehicle1 basicVehicle1 = new BasicVehicle1();
-        Vehicle1 basicVehicle1Adapter = new BasicVehicle1Adapter(basicVehicle1);
-        System.out.println("Basic Vehicle1: " + basicVehicle1Adapter.getDescription() + ", Cost: $" + basicVehicle1Adapter.cost());
-        basicVehicle1Adapter.drive(); // Driving Basic Vehicle1
+        Car car = new BicycleAdapter(new Bicycle());
+        car.drive(); // Output: Pedaling the bicycle...
+        car.honk();  // Output: Ringing the bicycle bell...
     }
 }
