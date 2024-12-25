@@ -6,6 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Interview Question:
+ * Given a list of city temperatures, implement a method to find the minimum, maximum, and average temperatures for each city.
+ * The method should group the temperatures by city and then calculate the required statistics.
+ *
+ * You should provide implementations using Java Streams and print the results.
+ * Consider edge cases such as cities with only one temperature reading or no temperature readings.
+ */
+
 public class FindMinMaxAvg {
     public static void main(String[] args) {
         List<CityTemperature> cityTemperatureList = Arrays.asList(
@@ -17,9 +26,11 @@ public class FindMinMaxAvg {
                 new CityTemperature("Delhi", 40.76)
         );
 
+        // Group temperatures by city
         Map<String, List<CityTemperature>> frequencyMap = cityTemperatureList.stream()
                 .collect(Collectors.groupingBy(CityTemperature::getCity));
 
+        // Calculate min, max, and avg temperatures for each city
         Map<String, TemperatureStats> resultMap = new HashMap<>();
 
         frequencyMap.forEach((city, tempList) -> {
@@ -29,6 +40,7 @@ public class FindMinMaxAvg {
             resultMap.put(city, new TemperatureStats(min, max, avg));
         });
 
+        // Print the results
         System.out.println(resultMap);
     }
 }
@@ -63,7 +75,6 @@ class CityTemperature {
         return "" + temperature;
     }
 }
-
 
 class TemperatureStats {
     private final double min;

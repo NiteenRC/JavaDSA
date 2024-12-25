@@ -30,6 +30,8 @@ public class HashMapEqualsHashCode {
 
         // Retrieving using key2, which is equal in content but a different instance
         String value = map.get(key2);
-        System.out.println(value); // Output: null, because key2 is not considered equal to key1
+        // Output: null, because key2 is not considered equal to key1
+        System.out.println(value);
+        //Note: If we equals override using both productId and name then retrieves the value
     }
 }

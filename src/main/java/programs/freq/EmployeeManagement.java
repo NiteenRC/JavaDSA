@@ -6,11 +6,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * select all employees from ncr region
- * <p>
- * then select all employees from IT department
- * <p>
- * map all employees with their id
+ * Interview Question:
+ * Given a list of employees, implement the following functionalities using Java Streams:
+ *
+ * 1. Select all employees from the NCR region.
+ * 2. Select all employees from the IT department.
+ * 3. Map all employees with their ID, ensuring there are no duplicate IDs.
+ *
+ * You should provide implementations for each task and print the results.
+ * Consider edge cases such as employees belonging to multiple departments or regions.
  */
 
 public class EmployeeManagement {
@@ -18,22 +22,25 @@ public class EmployeeManagement {
         Department itDepartment = new Department("IT", "Information Technology");
         Employee employee1 = new Employee("John", itDepartment, "NCR", 1);
         Employee employee2 = new Employee("Alice", itDepartment, "DEL", 2);
-        Employee employee3 = new Employee("Alice", itDepartment, "DEL", 2);
+        Employee employee3 = new Employee("Bob", itDepartment, "NCR", 3);
         List<Employee> employeeList = Arrays.asList(employee1, employee2, employee3);
 
+        // Select all employees from NCR region
         List<Employee> ncrRegionList = employeeList.stream()
                 .filter(employee -> employee.getRegion().equals("NCR"))
-                .collect(Collectors.toList());
+                .toList();
+        System.out.println("Employees from NCR region: " + ncrRegionList);
 
+        // Select all employees from IT department
         List<Employee> itDepartmentList = employeeList.stream()
                 .filter(employee -> employee.getDepartment().getName().equals("IT"))
-                .collect(Collectors.toList());
+                .toList();
+        System.out.println("Employees from IT department: " + itDepartmentList);
 
+        // Map all employees with their ID
         Map<Integer, List<Employee>> mappingEmployeeId = employeeList.stream()
                 .collect(Collectors.groupingBy(Employee::getId));
-
-        System.out.println(mappingEmployeeId);
-
+        System.out.println("Employees mapped by ID: " + mappingEmployeeId);
     }
 }
 
@@ -88,6 +95,9 @@ class Employee {
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
+                ", department=" + department.getName() +
+                ", region='" + region + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

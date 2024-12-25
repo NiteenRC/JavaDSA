@@ -5,12 +5,23 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Write the below program using java8?
- * Sort the characters by their frequency in descending order?
- * input= “JavaJ2EEE”
- * output=”E3J2a2v121”
- * https://leetcode.com/problems/sort-characters-by-frequency/submissions/1217971453/
+ * Interview Question:
+ * Implement a method that sorts characters in a string by their frequency in descending order using Java 8 Streams.
+ *
+ * Given an input string, your task is to:
+ * 1. Create a frequency map of characters.
+ * 2. Sort the characters by their frequency in descending order.
+ * 3. Return a string where characters are followed by their frequency counts.
+ *
+ * Example:
+ * Input: "JavaJ2EEE"
+ * Output: "E3J2a2v121"
+ *
+ * Consider edge cases such as an empty string or strings with all unique characters.
+ *
+ * Reference: https://leetcode.com/problems/sort-characters-by-frequency/submissions/1217971453/
  */
+
 public class SortCharsByFreq {
     public static void main(String[] args) {
         String input = "JavaJ2EEE";
@@ -18,15 +29,17 @@ public class SortCharsByFreq {
     }
 
     private static String sortByFreq(String input) {
-        Map<Character, Long> map = input.chars()
+        // Step 1: Create a frequency map of characters
+        Map<Character, Long> frequencyMap = input.chars()
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
-        Stream<String> list = map.entrySet().stream()
+        // Step 2: Sort the characters by their frequency in descending order
+        Stream<String> sortedStream = frequencyMap.entrySet().stream()
                 .sorted((entry1, entry2) -> Long.compare(entry2.getValue(), entry1.getValue()))
                 .map(entry -> entry.getKey() + "" + entry.getValue());
 
-        return list.collect(Collectors.joining());
-
+        // Step 3: Join the sorted characters to form the output string
+        return sortedStream.collect(Collectors.joining());
     }
 }

@@ -2,9 +2,29 @@ package programs.companies;
 
 import java.util.*;
 
+/**
+ * Interview Question:
+ *
+ * 1. Implement a method to find the second most frequent words in a given text.
+ * - Ignore special characters and consider only letters and digits.
+ * - Return a list of words that have the second highest frequency.
+ *
+ * Example:
+ * Input: "Hello world!!! This is Aakash. Friends call me Aakash the great. I want to be world famous celebrity and open Aakash group of companies"
+ * Output: [world, great, want, be, famous, celebrity, open, group, of, companies]
+ *
+ * 2. Implement a method to group anagrams from a list of words.
+ * - Anagrams are words that can be formed by rearranging the letters of another word.
+ *
+ * Example:
+ * Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
+ * Output: [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
+ *
+ * Consider edge cases such as empty text, single word text, or lists with no anagrams.
+ */
 public class NetCracker {
     public static void main(String[] args) {
-        //Find the second most frequent words in the given text.
+        // Find the second most frequent words in the given text.
         String inputText = "Hello world!!! This is Aakash. Friends call me Aakash the great. I want to be world famous celebrity and open Aakash group of companies";
         List<String> secondMostFrequentWords = findSecondMostFrequentWords(inputText);
         if (secondMostFrequentWords != null) {
@@ -45,7 +65,6 @@ public class NetCracker {
         ArrayList<Map.Entry<Integer, List<String>>> frequencies = new ArrayList<>(frequencyGroups.entrySet());
         if (frequencies.size() > 1) {
             return frequencies.get(1).getValue(); // Second highest frequency
-            //return frequencyGroups.get(secondHighestFrequency);
         } else {
             return null;
         }
