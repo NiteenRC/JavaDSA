@@ -3,127 +3,129 @@ package programs.cache;
 import java.util.HashMap;
 import java.util.Map;
 
-class Node<K, V> {
-    K key;
-    V value;
-    Node<K, V> prev;
-    Node<K, V> next;
-
-    public Node(K key, V value) {
-        this.key = key;
-        this.value = value;
-    }
-}
-
-class LRUCache<K, V> {
+class LRUCache {
     private final int capacity;
-    private final Map<K, Node<K, V>> cache;
-    private final Node<K, V> head;
-    private final Node<K, V> tail;
+    private final Map<Integer, Node> cache; // HashMap for O(1) access
+    private final Node head, tail;          // Dummy head and tail for Doubly Linked List
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        cache = new HashMap<>();
-        head = new Node<>(null, null);
-        tail = new Node<>(null, null);
-        head.next = tail;
+        this.cache = new HashMap<>();
+        this.head = new Node(0, 0); // Dummy head
+        this.tail = new Node(0, 0); // Dummy tail
+        head.next = tail;          // Initialize pointers
         tail.prev = head;
     }
 
-    public synchronized V get(K key) {
-        Node<K, V> node = cache.get(key);
-        if (node != null) {
-            moveToHead(node);
+    // Get method to fetch value from the cache
+    public int get(int key) {
+        if (cache.containsKey(key)) {
+            Node node = cache.get(key);
+            moveToHead(node); // Mark as recently used
             return node.value;
         }
-        return null;
+        return -1; // Key not found
     }
 
-    public synchronized void put(K key, V value) {
-        Node<K, V> node = cache.get(key);
-        if (node == null) {
-            node = new Node<>(key, value);
-            cache.put(key, node);
-            addToHead(node);
-            if (cache.size() > capacity) {
-                Node<K, V> removed = removeTail();
-                cache.remove(removed.key);
-            }
-        } else {
+    // Put method to insert or update a value
+    public void put(int key, int value) {
+        if (cache.containsKey(key)) {
+            // Update existing node's value and move to head
+            Node node = cache.get(key);
             node.value = value;
             moveToHead(node);
+        } else {
+            // Create a new node
+            Node newNode = new Node(key, value);
+            cache.put(key, newNode);
+            addNodeToHead(newNode);
+
+            if (cache.size() > capacity) {
+                // Remove least recently used node
+                Node lru = removeTail();
+                cache.remove(lru.key);
+            }
         }
     }
 
-    private void addToHead(Node<K, V> node) {
+    // Add a new node right after the head
+    private void addNodeToHead(Node node) {
         node.prev = head;
         node.next = head.next;
         head.next.prev = node;
         head.next = node;
     }
 
-    private void removeNode(Node<K, V> node) {
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+    // Remove a node from the doubly linked list
+    private void removeNode(Node node) {
+        Node prev = node.prev;
+        Node next = node.next;
+        prev.next = next;
+        next.prev = prev;
     }
 
-    private void moveToHead(Node<K, V> node) {
+    // Move an existing node to the head
+    private void moveToHead(Node node) {
         removeNode(node);
-        addToHead(node);
+        addNodeToHead(node);
     }
 
-    private Node<K, V> removeTail() {
-        Node<K, V> removed = tail.prev;
-        removeNode(removed);
-        return removed;
+    // Remove the tail node (Least Recently Used)
+    private Node removeTail() {
+        Node lru = tail.prev;
+        removeNode(lru);
+        return lru;
     }
 
-    public synchronized void clear() {
-        cache.clear();
-        head.next = tail;
-        tail.prev = head;
-    }
+    private class Node {
+        int key, value;
+        Node prev, next;
 
-    public synchronized int size() {
-        return cache.size();
-    }
-
-    public synchronized boolean containsKey(K key) {
-        return cache.containsKey(key);
-    }
-
-    @Override
-    public synchronized String toString() {
-        StringBuilder builder = new StringBuilder("{");
-        Node<K, V> current = head.next;
-        while (current != tail) {
-            builder.append(current.key).append("=").append(current.value);
-            current = current.next;
-            if (current != tail) {
-                builder.append(", ");
-            }
+        Node(int key, int value) {
+            this.key = key;
+            this.value = value;
         }
-        builder.append("}");
-        return builder.toString();
     }
 }
 
 public class LRUCacheImpl {
     public static void main(String[] args) {
-        LRUCache<Integer, String> cache = new LRUCache<>(3);
+        LRUCache lruCache = new LRUCache(2);
 
-        cache.put(1, "One");
-        cache.put(2, "Two");
-        cache.put(3, "Three");
+        System.out.println("Step 1: Add key=1, value=1 to the cache.");
+        lruCache.put(1, 1);  // Cache: {1=1}
+        System.out.println();
 
-        System.out.println(cache); // Output: {3=Three, 2=Two, 1=One}
+        System.out.println("Step 2: Add key=2, value=2 to the cache.");
+        lruCache.put(2, 2);  // Cache: {1=1, 2=2}
+        System.out.println();
 
-        cache.put(4, "Four"); // Entry 1 (One) is removed as it was least recently used
+        System.out.println("Step 3: Access key=1 (should return value=1).");
+        System.out.println("Result: " + lruCache.get(1));  // Returns 1, Cache: {2=2, 1=1}
+        System.out.println();
 
-        System.out.println(cache); // Output: {4=Four, 3=Three, 2=Two}
+        System.out.println("Step 4: Add key=3, value=3 (should evict key=2).");
+        lruCache.put(3, 3);  // Evicts key 2, Cache: {1=1, 3=3}
+        System.out.println();
 
-        cache.get(2); // Entry 2 (Two) is accessed, moving it to the front
+        System.out.println("Step 5: Access key=2 (should return -1, as it's evicted).");
+        System.out.println("Result: " + lruCache.get(2));  // Returns -1
+        System.out.println();
 
-        System.out.println(cache); // Output: {2=Two, 4=Four, 3=Three}
+        System.out.println("Step 6: Add key=4, value=4 (should evict key=1).");
+        lruCache.put(4, 4);  // Evicts key 1, Cache: {3=3, 4=4}
+        System.out.println();
+
+        System.out.println("Step 7: Access key=1 (should return -1, as it's evicted).");
+        System.out.println("Result: " + lruCache.get(1));  // Returns -1
+        System.out.println();
+
+        System.out.println("Step 8: Access key=3 (should return value=3).");
+        System.out.println("Result: " + lruCache.get(3));  // Returns 3, Cache: {4=4, 3=3}
+        System.out.println();
+
+        System.out.println("Step 9: Access key=4 (should return value=4).");
+        System.out.println("Result: " + lruCache.get(4));  // Returns 4, Cache: {3=3, 4=4}
+        System.out.println();
     }
 }
