@@ -25,6 +25,11 @@ public class HashMapCodes {
         int mostFrequentElement = findMostFrequentElement(new int[]{1, 3, 2, 3, 1, 3, 4, 1});
         System.out.println(mostFrequentElement);
 
+        // 4. Find Most Frequent Element in an Array
+        System.out.println("\n4. Find Most Frequent Element in an Array");
+        int mostFrequentElement1 = findMostFrequentElementUsingPriorityQueue(new int[]{1, 3, 2, 3, 1, 3, 4, 1});
+        System.out.println(mostFrequentElement1);
+
         // 5. Group People by Age
         System.out.println("\n5. Group People by Age");
         Map<Integer, List<String>> groupedByAge = groupPeopleByAge(Arrays.asList(
@@ -71,6 +76,39 @@ public class HashMapCodes {
         System.out.println("\n12. Find All Max Frequency Words");
         List<String> maxFreqWords = findAllMaxFrequencyWords("this is a test this is only a test");
         System.out.println(maxFreqWords);
+
+        // 13. Find Kth largest element
+        System.out.println("\n12. Find Kth largest element");
+        int largestElement = findKthLargest(Arrays.asList(100, 4, 200, 1, 3, 2), 3);
+        System.out.println(largestElement);
+
+
+    }
+
+    private static int findMostFrequentElementUsingPriorityQueue(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums){
+            map.put(num, map.getOrDefault(num, 0)+1);
+        }
+
+        PriorityQueue<Map.Entry<Integer, Integer>> pq=
+                new PriorityQueue<>(
+                        (e1,e2)-> e2.getValue()-e1.getValue());
+
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            pq.offer(entry);
+
+            if(pq.size() > 2){
+                pq.poll();
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = pq.size() - 1; i >=0 ; i--) {
+            result.add(pq.poll().getKey());
+        }
+        System.out.println(result);
+        return 0;
     }
 
     // Group Anagrams
@@ -85,13 +123,25 @@ public class HashMapCodes {
         return new ArrayList<>(map.values());
     }
 
+    // Find kth largest
+    public static int findKthLargest(List<Integer> list, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int num : list) {
+            minHeap.offer(num);
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+        return minHeap.peek();
+    }
+
     // Top K Frequent Words
     public static List<String> topKFrequentWords(List<String> words, int k) {
         Map<String, Integer> freqMap = new HashMap<>();
         for (String word : words) {
             freqMap.put(word, freqMap.getOrDefault(word, 0) + 1);
         }
-        PriorityQueue<Map.Entry<String, Integer>> heap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+        PriorityQueue<Map.Entry<String, Integer>> heap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry<String, Integer>::getValue).reversed());
         for (Map.Entry<String, Integer> entry : freqMap.entrySet()) {
             heap.offer(entry);
             if (heap.size() > k) {
@@ -161,17 +211,18 @@ public class HashMapCodes {
             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
 
-        List<Map.Entry<Integer, Integer>> entryList = new ArrayList<>(frequencyMap.entrySet());
-
-        entryList.sort((entry1, entry2) -> {
-            int freqCompare = entry2.getValue().compareTo(entry1.getValue());
-            int valueCompare = entry1.getKey().compareTo(entry2.getKey());
-            return freqCompare == 0 ? valueCompare : freqCompare;
-        });
+        List<Map.Entry<Integer, Integer>> entryList = frequencyMap.entrySet()
+                .stream().sorted((entry1, entry2) -> {
+                    int value = entry2.getValue().compareTo(entry1.getValue());
+                    int key = entry1.getKey().compareTo(entry2.getKey());
+                    return value == 0 ? key : value;
+                }).toList();
 
         List<Integer> sortedList = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : entryList) {
-            sortedList.addAll(Collections.nCopies(entry.getValue(), entry.getKey()));
+            for (int i = 0; i < entry.getValue(); i++) {
+                sortedList.add(entry.getKey());
+            }
         }
         return sortedList;
     }

@@ -8,7 +8,7 @@ public class CoinChange {
 
         // Test case 1: Standard case with multiple denominations
         int[] coins1 = {1, 2, 5};
-        int amount1 = 11;
+        int amount1 = 5;
         int result1 = solution.method1(coins1, amount1);
         System.out.println(result1); // Expected output: 3 (5+5+1)
 
@@ -92,10 +92,10 @@ public class CoinChange {
             int[] dp = new int[amount + 1];
 
             // Fill the array with a value larger than any possible solution
-            Arrays.fill(dp, amount + 1);
+            //Arrays.fill(dp, amount + 1);
 
             // Base case: No coins needed to make amount 0
-            dp[0] = 0;
+            dp[0] = 1;
 
             // Iterate through each coin denomination
             for (int coin : coins) {
@@ -103,13 +103,13 @@ public class CoinChange {
                 for (int i = coin; i <= amount; i++) {
                     // Calculate the minimum number of coins needed for the current amount
                     // by choosing either the current coin or the best solution for the smaller amount
-                    System.out.println("coin:" + coin + " dp[i]:" + dp[i] + " " + " dp[i - coin]:" + dp[i - coin]);
-                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                   // System.out.println("coin:" + coin + " dp[i]:" + dp[i] + " " + " dp[i - coin]:" + dp[i - coin]);
+                    dp[i] += dp[i - coin];
                 }
             }
             // If dp[amount] is still larger than amount, it means no valid combination was found
             // Return -1 in this case, otherwise, return the minimum number of coins needed
-            return dp[amount] > amount ? -1 : dp[amount];
+            return dp[amount];
         }
     }
 }
