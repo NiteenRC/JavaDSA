@@ -6,7 +6,8 @@ import java.util.Map;
 class LRUCache {
     private final int capacity;
     private final Map<Integer, Node> cache; // HashMap for O(1) access
-    private final Node head, tail;          // Dummy head and tail for Doubly Linked List
+    private Node head;
+    private final Node tail;          // Dummy head and tail for Doubly Linked List
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
@@ -50,10 +51,9 @@ class LRUCache {
 
     // Add a new node right after the head
     private void addNodeToHead(Node node) {
-        node.prev = head;
-        node.next = head.next;
-        head.next.prev = node;
-        head.next = node;
+        node.next = head;
+        head.prev = node;
+        head = node;
     }
 
     // Remove a node from the doubly linked list
