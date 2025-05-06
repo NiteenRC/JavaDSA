@@ -1,7 +1,5 @@
 package programs.dsa.dp.one;
 
-import java.util.Arrays;
-
 public class CoinChange {
     public static void main(String[] args) {
         Solution solution = new Solution();
@@ -103,7 +101,7 @@ public class CoinChange {
                 for (int i = coin; i <= amount; i++) {
                     // Calculate the minimum number of coins needed for the current amount
                     // by choosing either the current coin or the best solution for the smaller amount
-                   // System.out.println("coin:" + coin + " dp[i]:" + dp[i] + " " + " dp[i - coin]:" + dp[i - coin]);
+                    // System.out.println("coin:" + coin + " dp[i]:" + dp[i] + " " + " dp[i - coin]:" + dp[i - coin]);
                     dp[i] += dp[i - coin];
                 }
             }

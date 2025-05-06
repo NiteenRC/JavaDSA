@@ -1,4 +1,5 @@
 Top 40 Must-Do Array Interview Questions
+
 1. Two Sum
    **Problem:** Find two numbers that add up to a given target.
    **Approach:** Use HashMap for O(N) time complexity.
@@ -263,8 +264,6 @@ Top 40 Must-Do Array Interview Questions
     **Approach:** Use binary search on shorter array.
     **Test Case:** [1,3], [2] → Output: 2.0
     **Link:** https://leetcode.com/problems/median-of-two-sorted-arrays/
-
-
 
 # Java Programming Tasks
 

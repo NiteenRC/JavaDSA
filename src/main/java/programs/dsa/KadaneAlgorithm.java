@@ -7,7 +7,6 @@ public class KadaneAlgorithm {
     }
 
 
-
     // brute force
     private static int maxSubArraySum(int[] nums) {
         int maxSum = Integer.MIN_VALUE; // Initialize to the smallest possible value

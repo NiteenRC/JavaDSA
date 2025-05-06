@@ -6,11 +6,11 @@ package programs.companies;
  * - If the character is in uppercase, convert it to lowercase.
  * - If the character is in lowercase, convert it to uppercase.
  * - Non-alphabetic characters should remain unchanged.
- *
+ * <p>
  * For example:
  * Input: "I Work At Accolite Digital"
  * Output: "i wORK aT aCCOLITE dIGITAL"
- *
+ * <p>
  * Consider edge cases such as an empty string or strings with no alphabetic characters.
  */
 public class AccoliteDigital {

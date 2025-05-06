@@ -87,6 +87,28 @@ public class FreqBasics {
                 ));
     }
 
+    private static Map<Character, Long> sortByFreqIfSameThenByKeys(String s) {
+        Map<Character, Long> frequencyMap = s.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        return frequencyMap.entrySet()
+                .stream()
+                .sorted((e1, e2) -> {
+                    int freqCompare = e1.getValue().compareTo(e2.getValue());
+                    if (freqCompare == 0) {
+                        return Character.compare(e1.getKey(), e2.getKey());
+                    }
+                    return freqCompare;
+                })
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+    }
+
     private static Map<Character, Long> sortByFreqDesc(String s) {
         Map<Character, Long> frequencyMap = s.chars()
                 .mapToObj(c -> (char) c)

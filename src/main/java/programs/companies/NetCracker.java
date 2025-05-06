@@ -4,22 +4,22 @@ import java.util.*;
 
 /**
  * Interview Question:
- *
+ * <p>
  * 1. Implement a method to find the second most frequent words in a given text.
  * - Ignore special characters and consider only letters and digits.
  * - Return a list of words that have the second highest frequency.
- *
+ * <p>
  * Example:
  * Input: "Hello world!!! This is Aakash. Friends call me Aakash the great. I want to be world famous celebrity and open Aakash group of companies"
  * Output: [world, great, want, be, famous, celebrity, open, group, of, companies]
- *
+ * <p>
  * 2. Implement a method to group anagrams from a list of words.
  * - Anagrams are words that can be formed by rearranging the letters of another word.
- *
+ * <p>
  * Example:
  * Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
  * Output: [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
- *
+ * <p>
  * Consider edge cases such as empty text, single word text, or lists with no anagrams.
  */
 public class NetCracker {

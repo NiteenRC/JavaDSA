@@ -7,6 +7,7 @@ public class GenerateParenthesis {
     public static void main(String[] args) {
         System.out.println(new GenerateParenthesis().generateParenthesis(2));
     }
+
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
         backtrack(result, "", 0, 0, n);

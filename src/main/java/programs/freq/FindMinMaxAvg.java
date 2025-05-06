@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * Interview Question:
  * Given a list of city temperatures, implement a method to find the minimum, maximum, and average temperatures for each city.
  * The method should group the temperatures by city and then calculate the required statistics.
- *
+ * <p>
  * You should provide implementations using Java Streams and print the results.
  * Consider edge cases such as cities with only one temperature reading or no temperature readings.
  */

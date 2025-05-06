@@ -87,24 +87,24 @@ public class HashMapCodes {
 
     private static int findMostFrequentElementUsingPriorityQueue(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (int num : nums){
-            map.put(num, map.getOrDefault(num, 0)+1);
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<Map.Entry<Integer, Integer>> pq=
+        PriorityQueue<Map.Entry<Integer, Integer>> pq =
                 new PriorityQueue<>(
-                        (e1,e2)-> e2.getValue()-e1.getValue());
+                        (e1, e2) -> e2.getValue() - e1.getValue());
 
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             pq.offer(entry);
 
-            if(pq.size() > 2){
+            if (pq.size() > 2) {
                 pq.poll();
             }
         }
 
         List<Integer> result = new ArrayList<>();
-        for (int i = pq.size() - 1; i >=0 ; i--) {
+        for (int i = pq.size() - 1; i >= 0; i--) {
             result.add(pq.poll().getKey());
         }
         System.out.println(result);

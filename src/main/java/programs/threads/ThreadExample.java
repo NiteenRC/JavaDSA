@@ -5,14 +5,17 @@ public class ThreadExample {
 
     public static void main(String[] args) throws InterruptedException {
         Thread t1 = new Thread(() -> {
+            int count = 0;
             while (flag) {
-                System.out.println("Thread 1 finished.");
+                count++;
             }
+            System.out.println("Thread 1 finished." + count);
         });
 
         Thread t2 = new Thread(() -> {
             try {
                 Thread.sleep(10);
+                System.out.println("Thread 2 finished.");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -22,7 +25,7 @@ public class ThreadExample {
         t1.start();
         t2.start();
 
-        t1.join();
-        t2.join();
+        //t1.join();
+        //t2.join();
     }
 }

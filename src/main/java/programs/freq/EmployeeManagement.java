@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 /**
  * Interview Question:
  * Given a list of employees, implement the following functionalities using Java Streams:
- *
+ * <p>
  * 1. Select all employees from the NCR region.
  * 2. Select all employees from the IT department.
  * 3. Map all employees with their ID, ensuring there are no duplicate IDs.
- *
+ * <p>
  * You should provide implementations for each task and print the results.
  * Consider edge cases such as employees belonging to multiple departments or regions.
  */

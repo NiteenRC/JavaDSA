@@ -1,7 +1,6 @@
 package design.pattern.creational.singleton;
 
-import java.io.*;
-import java.lang.reflect.Constructor;
+import java.io.Serializable;
 
 public final class AuditService implements Serializable, Cloneable {
     // Step 1: Private static instance to hold the Singleton instance

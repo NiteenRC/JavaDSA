@@ -7,7 +7,7 @@ public class CharacterFrequencyCounter {
      * Implement a method that counts the frequency of each character in a given string.
      * The method should return a string where each character is followed by its frequency count.
      * For example, given the input "aabbcccccaaaa", the output should be "a2b2c5a4".
-     *
+     * <p>
      * Consider edge cases such as an empty string or a string with only one type of character.
      */
 

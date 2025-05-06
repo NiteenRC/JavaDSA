@@ -10,7 +10,7 @@ public class PrintOddEvenNumbers {
 
     public static void main(String[] args) {
         Thread oddThread = new Thread(PrintOddEvenNumbers::printOdd, "T1");
-        Thread evenThread = new Thread(PrintOddEvenNumbers::printEven,"T2");
+        Thread evenThread = new Thread(PrintOddEvenNumbers::printEven, "T2");
 
         oddThread.start();
         evenThread.start();

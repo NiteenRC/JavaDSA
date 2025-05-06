@@ -37,7 +37,7 @@ public class MaxSumSubArray {
     }
 
     public static void main(String[] args) {
-        int [] nums = new int[]{1,3,-1,-3,5,3,6,7};
+        int[] nums = new int[]{1, 3, -1, -3, 5, 3, 6, 7};
         System.out.println(maxSlidingWindow(nums, 3));
     }
 }

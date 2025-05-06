@@ -1,10 +1,23 @@
 package programs.threads;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class URLFetcher {
     private static final ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        List<String> urls = Arrays.asList("http://example.com", "http://example.org", "http://example.net");
+        URLFetcher fetcher = new URLFetcher();
+        List<String> data = fetcher.fetchDataFromURLs(urls);
+
+        // Print out the fetched data
+        data.forEach(System.out::println);
+
+        executorService.shutdown();  // Shutdown the ExecutorService
+    }
 
     public List<String> fetchDataFromURLs(List<String> urls) throws InterruptedException, ExecutionException {
         List<Callable<String>> tasks = new ArrayList<>();
@@ -23,16 +36,5 @@ public class URLFetcher {
         }
 
         return fetchedData;
-    }
-
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        List<String> urls = Arrays.asList("http://example.com", "http://example.org", "http://example.net");
-        URLFetcher fetcher = new URLFetcher();
-        List<String> data = fetcher.fetchDataFromURLs(urls);
-
-        // Print out the fetched data
-        data.forEach(System.out::println);
-
-        executorService.shutdown();  // Shutdown the ExecutorService
     }
 }
