@@ -69,7 +69,7 @@ public class Preparation {
     public static void main(String[] args) {
 
 
-        List<String> list = Arrays.asList("name, marks",
+        List<String> list = List.of("name, marks",
                 "A,100",
                 "B,200",
                 "C,300");

@@ -1,7 +1,6 @@
 package programs.companies;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +27,11 @@ public class Quartz {
 
     // ✅ Method to find the 3rd highest distinct salary and its corresponding employee(s)
     private static void thirdHighestSalaryDistinct() {
-        Map<String, Integer> map = new HashMap<>();
-        map.put("a", 1000);
-        map.put("y", 1000);
-        map.put("d", 5000);
-        map.put("z", 5000);
-        map.put("b", 7000);
+        var map = Map.of("a", 1000,
+                "y", 1000,
+                "d", 5000,
+                "z", 5000,
+                "b", 7000);
 
         // Step 1: Get top 3 distinct salaries in descending order
         List<Integer> topSalaries = map.values().stream()

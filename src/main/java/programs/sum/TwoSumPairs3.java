@@ -25,7 +25,7 @@ public class TwoSumPairs3 {
             int num = nums[i];
             int difference = target - num;
             if (numIndexMap.containsKey(difference)) {
-                result.add(Arrays.asList(numIndexMap.get(difference), i));
+                result.add(List.of(numIndexMap.get(difference), i));
             }
 
             if (!numIndexMap.containsKey(num)) {
@@ -47,7 +47,7 @@ public class TwoSumPairs3 {
                     numIndexMap.putIfAbsent(nums[i], i);
                     return false;
                 })
-                .mapToObj(i -> Arrays.asList(numIndexMap.get(target - nums[i]), i))
+                .mapToObj(i -> List.of(numIndexMap.get(target - nums[i]), i))
                 .collect(Collectors.toList());
     }
 }

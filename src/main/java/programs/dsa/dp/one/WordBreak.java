@@ -5,15 +5,15 @@ import java.util.List;
 
 public class WordBreak {
     public static void main(String[] args) {
-        List<String> wordDict = Arrays.asList("leet", "code");
+        List<String> wordDict = List.of("leet", "code");
         String s = "leetcode";
         System.out.println(wordBreak(s, wordDict)); // should return true
 
-        wordDict = Arrays.asList("apple", "pen");
+        wordDict = List.of("apple", "pen");
         s = "applepenapple";
         System.out.println(wordBreak(s, wordDict)); // should return true
 
-        wordDict = Arrays.asList("cats", "dog", "sand", "and", "cat");
+        wordDict = List.of("cats", "dog", "sand", "and", "cat");
         s = "catsandog";
         System.out.println(wordBreak(s, wordDict)); // should return false
     }

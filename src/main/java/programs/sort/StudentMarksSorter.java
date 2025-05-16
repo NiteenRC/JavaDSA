@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class StudentMarksSorter {
     public static void main(String[] args) {
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student("Rama", "Math", 50),
                 new Student("Rama", "Physics", 60),
                 new Student("Rama", "English", 45),

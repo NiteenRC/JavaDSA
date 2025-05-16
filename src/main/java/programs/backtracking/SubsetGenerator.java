@@ -14,7 +14,7 @@ public class SubsetGenerator {
         // Include current element
         subset.add(nums[index]);
         generateSubsets(nums, index + 1, subset, result);
-        subset.remove(subset.size() - 1); // Backtrack
+        subset.removeLast(); // Backtrack
     }
 
     public static void main(String[] args) {

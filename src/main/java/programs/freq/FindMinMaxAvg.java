@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class FindMinMaxAvg {
     public static void main(String[] args) {
-        List<CityTemperature> cityTemperatureList = Arrays.asList(
+        List<CityTemperature> cityTemperatureList = List.of(
                 new CityTemperature("Delhi", 19.122),
                 new CityTemperature("Bangalore", 18.321),
                 new CityTemperature("Mumbai", 35.24),

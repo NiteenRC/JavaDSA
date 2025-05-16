@@ -4,14 +4,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * List<Integer> list = Arrays.asList(3, 1, 2, 4, 5, 6, 7, 8, 9, -1);
+ * List<Integer> list = List.of(3, 1, 2, 4, 5, 6, 7, 8, 9, -1);
  * int targetSum = 8;
  * <p>
  * output = [[1, 7], [2, 6], [3, 5], [9, -1]]
  */
 public class TwoSumPairs1 {
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(3, 1, 2, 4, 5, 6, 7, 8, 9, -1);
+        List<Integer> list = List.of(3, 1, 2, 4, 5, 6, 7, 8, 9, -1);
         int targetSum = 8;
 
         List<List<Integer>> result = java8(list, targetSum);
@@ -27,7 +27,7 @@ public class TwoSumPairs1 {
             int complement = targetSum - currentNum;
 
             if (numToIndexMap.containsKey(complement)) {
-                result.add(Arrays.asList(complement, currentNum));
+                result.add(List.of(complement, currentNum));
             }
             numToIndexMap.put(currentNum, i);
         }
@@ -52,7 +52,7 @@ public class TwoSumPairs1 {
                 })
                 .map(num -> {
                     int complement = targetSum - num;
-                    return Arrays.asList(complement, num);
+                    return List.of(complement, num);
                 })
                 .sorted(Comparator.comparingInt(pair -> pair.get(0)))
                 .collect(Collectors.toList());

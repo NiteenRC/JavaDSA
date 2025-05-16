@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Lambda {
     public static void main(String[] args) {
         // 1. Write a lambda expression to sort a list of strings in ascending order of length.
-        List<String> list = Arrays.asList("Niteen", "Chougula", "Bangalore", "India", "Chougule");
+        List<String> list = List.of("Niteen", "Chougula", "Bangalore", "India", "Chougule");
         List<String> resultList = list.stream()
                 .sorted(Comparator.comparingInt(String::length))
                 .collect(Collectors.toList());

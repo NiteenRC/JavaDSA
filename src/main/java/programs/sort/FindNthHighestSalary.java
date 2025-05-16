@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 public class FindNthHighestSalary {
     public static void main(String[] args) {
-        List<Employee> employees = Arrays.asList(
+        List<Employee> employees = List.of(
                 new Employee("Harish", 100),
                 new Employee("Ajay", 600),
                 new Employee("Kiran", 300),

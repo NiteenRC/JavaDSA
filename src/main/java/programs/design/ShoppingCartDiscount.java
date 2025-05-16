@@ -26,7 +26,7 @@ public class ShoppingCartDiscount {
         Category category2 = new Category("Fashion", 20);
         Category category3 = new Category("Furniture", 50);
 
-        List<Item> list = Arrays.asList(
+        List<Item> list = List.of(
                 new Item("Almond", category1, 1000),
                 new Item("Shirt", category2, 500),
                 new Item("Jeans", category2, 500),

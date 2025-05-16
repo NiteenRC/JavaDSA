@@ -23,7 +23,7 @@ public class EmployeeManagement {
         Employee employee1 = new Employee("John", itDepartment, "NCR", 1);
         Employee employee2 = new Employee("Alice", itDepartment, "DEL", 2);
         Employee employee3 = new Employee("Bob", itDepartment, "NCR", 3);
-        List<Employee> employeeList = Arrays.asList(employee1, employee2, employee3);
+        List<Employee> employeeList = List.of(employee1, employee2, employee3);
 
         // Select all employees from NCR region
         List<Employee> ncrRegionList = employeeList.stream()

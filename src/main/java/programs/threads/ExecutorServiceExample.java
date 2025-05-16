@@ -1,8 +1,8 @@
 package programs.threads;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.stream.IntStream;
 
 public class ExecutorServiceExample {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -38,25 +38,25 @@ public class ExecutorServiceExample {
         long start = System.currentTimeMillis();
 
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
-        List<Future<Long>> results = new ArrayList<>();
         int chunkSize = range / threadCount;
 
-        for (int i = 0; i < threadCount; i++) {
-            final int startRange = i * chunkSize + 1;
-            final int endRange = (i == threadCount - 1) ? range : (i + 1) * chunkSize;
+        List<Callable<Long>> tasks = IntStream.range(0, threadCount)
+                .mapToObj(i -> {
+                    final int startRange = i * chunkSize;
+                    final int endRange = (i == threadCount - 1) ? range : (i + 1) * chunkSize;
+                    return (Callable<Long>) () -> {
+                        long partialSum = 0;
+                        for (int j = startRange; j < endRange; j++) {
+                            if (PrimeUtil.isPrime(j)) {
+                                partialSum += j;
+                            }
+                        }
+                        System.out.println("Executing in: " + Thread.currentThread().getName() + " => " + partialSum);
+                        return partialSum;
+                    };
+                }).toList();
 
-            Callable<Long> task = () -> {
-                long partialSum = 0;
-                for (int n = startRange; n <= endRange; n++) {
-                    if (PrimeUtil.isPrime(n)) {
-                        partialSum += n;
-                    }
-                }
-                return partialSum;
-            };
-
-            results.add(executor.submit(task));
-        }
+        List<Future<Long>> results = executor.invokeAll(tasks);
 
         long totalSum = 0;
         for (Future<Long> future : results) {

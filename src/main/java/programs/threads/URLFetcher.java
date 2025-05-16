@@ -9,7 +9,7 @@ public class URLFetcher {
     private static final ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        List<String> urls = Arrays.asList("http://example.com", "http://example.org", "http://example.net");
+        List<String> urls = List.of("http://example.com", "http://example.org", "http://example.net");
         URLFetcher fetcher = new URLFetcher();
         List<String> data = fetcher.fetchDataFromURLs(urls);
 

@@ -51,7 +51,7 @@ public class Java8ComplexCoding {
         wordFrequencyCounter(paragraph, 3);
 
         // 2. Employee Hierarchy Builder
-        List<String> employeeData = Arrays.asList(
+        List<String> employeeData = List.of(
                 "101, Alice, 103",
                 "102, Bob, 101",
                 "103, Charlie, null",
@@ -61,7 +61,7 @@ public class Java8ComplexCoding {
         buildEmployeeHierarchy(employeeData);
 
         // 3. Transaction Anomaly Detector
-        List<String> transactions = Arrays.asList(
+        List<String> transactions = List.of(
                 "T001, C101, 500, 2025-01-10T10:00:00",
                 "T002, C102, 700, 2025-01-11T11:00:00",
                 "T003, C101, 600, 2025-01-12T12:00:00",
@@ -71,7 +71,7 @@ public class Java8ComplexCoding {
         detectTransactionAnomalies(transactions, 1000);
 
         // 4. Log File Analyzer
-        List<String> logEntries = Arrays.asList(
+        List<String> logEntries = List.of(
                 "2025-01-15T10:00:00, INFO, Server started.",
                 "2025-01-15T10:05:00, ERROR, Connection timeout.",
                 "2025-01-15T10:10:00, WARN, Disk space low.",
@@ -81,7 +81,7 @@ public class Java8ComplexCoding {
         analyzeLogs(logEntries);
 
         // 5. Movie Recommendation System
-        List<String> ratings = Arrays.asList(
+        List<String> ratings = List.of(
                 "101, M1, 5",
                 "102, M2, 3",
                 "103, M1, 4",
@@ -93,7 +93,7 @@ public class Java8ComplexCoding {
         recommendTopMovies(ratings, 2);
 
         // 6. E-Commerce Product Aggregator
-        List<Map<String, Object>> products = Arrays.asList(
+        List<Map<String, Object>> products = List.of(
                 Map.of("ProductID", "P1", "Category", "Electronics", "Price", 1200, "Rating", 4.8),
                 Map.of("ProductID", "P2", "Category", "Electronics", "Price", 800, "Rating", 4.3),
                 Map.of("ProductID", "P3", "Category", "Clothing", "Price", 50, "Rating", 4.7),

@@ -18,8 +18,8 @@ public class PersonAddress {
         Address address3 = new Address("New Delhi");
 
         // Create some Person objects and add addresses to them
-        Person person1 = new Person("1", "Mark", Arrays.asList(address1, address3));
-        Person person2 = new Person("2", "Alice", Arrays.asList(address2, address3));
+        Person person1 = new Person("1", "Mark", List.of(address1, address3));
+        Person person2 = new Person("2", "Alice", List.of(address2, address3));
         Person person3 = new Person("3", "Bob", Collections.singletonList(address3));
         Person person4 = new Person("1", "John", Collections.singletonList(address3));
 

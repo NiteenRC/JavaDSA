@@ -313,7 +313,7 @@ public class SampleJavaPrograms {
     }
 
     private static void extractDuplicateElements() {
-        List<Integer> duplicateElements = Arrays.asList(1, 2, 2, 2, 3, 3, 4, 5, 1, 1, 56, 7, 8, 9, 10);
+        List<Integer> duplicateElements = List.of(1, 2, 2, 2, 3, 3, 4, 5, 1, 1, 56, 7, 8, 9, 10);
 
         System.out.println("maxed Elements " + duplicateElements);
 
@@ -364,7 +364,7 @@ public class SampleJavaPrograms {
     }
 
     private static void calculateAndSumAndAverage() {
-        List<Integer> oneToTen = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> oneToTen = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         IntSummaryStatistics summaryStatistics = oneToTen.stream()
                 .collect(summarizingInt(Integer::intValue));
@@ -373,14 +373,14 @@ public class SampleJavaPrograms {
     }
 
     private static void sortByLengthOfList() {
-        List<String> names = Arrays.asList("rohit", "urmila", "rohit", "urmila", "ram", "sham", "sita", "gita");
+        List<String> names = List.of("rohit", "urmila", "rohit", "urmila", "ram", "sham", "sita", "gita");
         names.stream()
                 .sorted(Comparator.comparingInt(String::length))
                 .forEach(System.out::println);
     }
 
     private static void secondLargestNumberFromList() {
-        List<Integer> oneToTen = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> oneToTen = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         Integer secondLarge = oneToTen.stream()
                 .sorted(reverseOrder())
                 .skip(1)
@@ -391,7 +391,7 @@ public class SampleJavaPrograms {
     }
 
     private static void sumOf() {
-        List<Integer> oneToTen = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> oneToTen = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         System.out.println(oneToTen.stream()
                 .mapToInt(Integer::intValue)
                 .sum());
@@ -427,7 +427,7 @@ public class SampleJavaPrograms {
     }
 
     private static void min3max3() {
-        List<Integer> randomNumbers = Arrays.asList(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
+        List<Integer> randomNumbers = List.of(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
         List<Integer> min3 = randomNumbers.stream()
                 .sorted(Integer::compare)
                 .limit(3)
@@ -460,7 +460,7 @@ public class SampleJavaPrograms {
     }
 
     private static void minMaxFromList() {
-        List<Integer> randomNumbers = Arrays.asList(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
+        List<Integer> randomNumbers = List.of(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
         Integer maxNumber = randomNumbers.stream()
                 .max(Integer::compareTo)
                 .orElse(Integer.MAX_VALUE);
@@ -479,7 +479,7 @@ public class SampleJavaPrograms {
     }
 
     private static void multipleOf5() {
-        List<Integer> randomNumbers = Arrays.asList(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
+        List<Integer> randomNumbers = List.of(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
         List<Integer> multipleOf5 = randomNumbers.stream()
                 .filter(n -> n % 5 == 0)
                 .collect(toList());
@@ -487,7 +487,7 @@ public class SampleJavaPrograms {
     }
 
     private static void joinListOfStrings() {
-        List<String> languageList = Arrays.asList("java", "c++", "c", "C sharp", "python", "kotlin", "scala");
+        List<String> languageList = List.of("java", "c++", "c", "C sharp", "python", "kotlin", "scala");
         String joinWithPrefixSuffixAndDelimiter = languageList
                 .stream()
                 .collect(joining(",", "[", "]"));
@@ -495,7 +495,7 @@ public class SampleJavaPrograms {
     }
 
     private static void reverseSortedList() {
-        List<Integer> randomNumbers = Arrays.asList(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
+        List<Integer> randomNumbers = List.of(12, 32, 2, 4, 777, 5, 32, 890, 422, 44, 99, 43);
         //this is throwing unsupportedOprerationException because we are
         // tries to sort ImmutableList that is not allowed .
         //   randomNumbers.sort(Comparator.reverseOrder());
@@ -513,7 +513,7 @@ public class SampleJavaPrograms {
     }
 
     private static void wordFrequency() {
-        List<String> names = Arrays.asList("rohit", "urmila", "rohit", "urmila", "ram", "sham", "sita", "gita");
+        List<String> names = List.of("rohit", "urmila", "rohit", "urmila", "ram", "sham", "sita", "gita");
         Map<String, Long> frequencyWords = names.stream()
                 .collect(groupingBy(Function.identity(), counting()));
         System.out.println(frequencyWords);
@@ -538,7 +538,7 @@ public class SampleJavaPrograms {
     }
 
     private static void removeDuplicateFromList() {
-        List<Integer> oneToTen = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> oneToTen = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         List<Integer> removeDuplicate = oneToTen.stream()
                 .distinct()
                 .collect(toList());
@@ -558,7 +558,7 @@ public class SampleJavaPrograms {
     }
 
     private static void separationOfEvenOddNumberInList() {
-        List<Integer> oneToTen = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> oneToTen = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         Collection<List<Integer>> evenOddList = oneToTen.stream()
                 .collect(collectingAndThen(partitioningBy(i -> i % 2 == 0),
@@ -568,7 +568,7 @@ public class SampleJavaPrograms {
     }
 
     private static void separationOfEvenOddNumberInMap() {
-        List<Integer> oneToTen = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> oneToTen = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         Map<Boolean, List<Integer>> evenAddOddSeparation = oneToTen.stream()
                 .collect(partitioningBy(i -> i % 2 == 0));

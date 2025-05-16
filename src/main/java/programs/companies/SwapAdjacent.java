@@ -1,12 +1,15 @@
 package programs.companies;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Persistent {
+public class SwapAdjacent {
     public static void main(String[] args) {
         // Sample employee list
-        List<Employee> employees = Arrays.asList(
+        List<Employee> employees = List.of(
                 new Employee("A", 25, 100, "IT"),
                 new Employee("B", 30, 200, "IT"),
                 new Employee("C", 28, 300, "IT"),
@@ -47,67 +50,7 @@ public class Persistent {
             arr[i + 1] = temp;
         }
         System.out.println("Original: " + s + " → Swapped: " + new String(arr));
-
-        System.out.println("\n🔹 SQL: Products not ordered");
-        System.out.println("""
-                    SELECT p.product
-                    FROM Product p
-                    LEFT JOIN Orders o ON p.productId = o.productId
-                    WHERE o.productId IS NULL;
-                """);
-
-        System.out.println("\n🔹 Builder pattern example:");
-        Car car = new Car.CarBuilder()
-                .wheels(4)
-                .color("Red")
-                .build();
-        System.out.println("Car -> Wheels: " + car.getWheels() + ", Color: " + car.getColor());
-    }
-}
-
-// Java 14+ Record
-record Employee(String name, int age, int salary, String dept) {
-}
-
-// Car Builder Pattern
-class Car {
-    private final int wheels;
-    private final String color;
-
-    private Car(CarBuilder builder) {
-        this.wheels = builder.wheels;
-        this.color = builder.color;
     }
 
-    public int getWheels() {
-        return wheels;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    @Override
-    public String toString() {
-        return "Car{wheels=" + wheels + ", color='" + color + "'}";
-    }
-
-    static class CarBuilder {
-        private int wheels;
-        private String color;
-
-        public CarBuilder wheels(int wheels) {
-            this.wheels = wheels;
-            return this;
-        }
-
-        public CarBuilder color(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public Car build() {
-            return new Car(this);
-        }
-    }
+    record Employee(String name, int age, int salary, String dept) { }
 }

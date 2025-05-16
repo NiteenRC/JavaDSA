@@ -33,7 +33,7 @@ class User {
 
 public class SortAndGroupByGender {
     public static void main(String[] args) {
-        List<User> users = Arrays.asList(
+        List<User> users = List.of(
                 new User("John", "Doe", "Male"),
                 new User("Jane", "Smith", "Female"),
                 new User("Alice", "Johnson", "Female"),

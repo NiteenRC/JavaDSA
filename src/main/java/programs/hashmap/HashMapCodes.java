@@ -7,12 +7,12 @@ public class HashMapCodes {
     public static void main(String[] args) {
         // 1. Group Anagrams
         System.out.println("1. Group Anagrams");
-        List<List<String>> anagrams = groupAnagrams(Arrays.asList("eat", "tea", "tan", "ate", "nat", "bat"));
+        List<List<String>> anagrams = groupAnagrams(List.of("eat", "tea", "tan", "ate", "nat", "bat"));
         System.out.println(anagrams);
 
         // 2. Top K Frequent Words
         System.out.println("\n2. Top K Frequent Words");
-        List<String> topKWords = topKFrequentWords(Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple"), 2);
+        List<String> topKWords = topKFrequentWords(List.of("apple", "banana", "apple", "orange", "banana", "apple"), 2);
         System.out.println(topKWords);
 
         // 3. Sort Characters by Frequency
@@ -32,7 +32,7 @@ public class HashMapCodes {
 
         // 5. Group People by Age
         System.out.println("\n5. Group People by Age");
-        Map<Integer, List<String>> groupedByAge = groupPeopleByAge(Arrays.asList(
+        Map<Integer, List<String>> groupedByAge = groupPeopleByAge(List.of(
                 new AbstractMap.SimpleEntry<>("Alice", 25),
                 new AbstractMap.SimpleEntry<>("Bob", 30),
                 new AbstractMap.SimpleEntry<>("Charlie", 25),
@@ -79,7 +79,7 @@ public class HashMapCodes {
 
         // 13. Find Kth largest element
         System.out.println("\n12. Find Kth largest element");
-        int largestElement = findKthLargest(Arrays.asList(100, 4, 200, 1, 3, 2), 3);
+        int largestElement = findKthLargest(List.of(100, 4, 200, 1, 3, 2), 3);
         System.out.println(largestElement);
 
 

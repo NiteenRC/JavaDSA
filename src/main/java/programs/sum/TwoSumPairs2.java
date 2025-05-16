@@ -28,7 +28,7 @@ public class TwoSumPairs2 {
                     map.put(nums[i], i);
                     return false;
                 })
-                .mapToObj(i -> Arrays.asList(map.get(target - nums[i]), i))
+                .mapToObj(i -> List.of(map.get(target - nums[i]), i))
                 .collect(Collectors.toList());
     }
 
@@ -39,7 +39,7 @@ public class TwoSumPairs2 {
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
             if (map.containsKey(complement)) {
-                result.add(Arrays.asList(map.get(complement), i));
+                result.add(List.of(map.get(complement), i));
             }
             map.put(nums[i], i);
         }

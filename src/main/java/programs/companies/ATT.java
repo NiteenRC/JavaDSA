@@ -36,12 +36,12 @@ public class ATT {
     }
 
     public static void main(String[] args) {
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student("abc", 123, new Marks(50, 32, 80)),
                 new Student("xyz", 124, new Marks(50, 60, 80))
         );
 
-        List<String> names = Arrays.asList("Niteen", "Durga", "Rahul");
+        List<String> names = List.of("Niteen", "Durga", "Rahul");
 
         // 1. Get students with Maths < 40
         List<String> lowMathScores = getStudentsWithLowMathScores(students);
